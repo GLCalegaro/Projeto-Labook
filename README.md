@@ -5,7 +5,7 @@ O Projeto "Labook" é uma API que funciona como uma rede social com o objetivo d
 
 Dentro da API será possível realizar o login, cadastro e edição de cadastro de usuários, criação, edição, remoção e também será possível curtir e descurtir publicações.
 
-🗒️ <a href="https://diligent-blow.surge.sh/home">Acesse aqui a documentação da API no Postman!</a>
+🗒️ <a href="https://documenter.getpostman.com/view/24465148/2s93CPrYBk">Acesse aqui a documentação da API no Postman!</a>
 
 ![image](https://user-images.githubusercontent.com/111308068/221442007-aeb25612-d0a0-48b6-972c-0fe0c69dcb82.png)
 
