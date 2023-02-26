@@ -1,12 +1,25 @@
+import { ROLE_USER, UsersDB } from "../interfaces/types"
+
 export class User {    
     constructor(
         private id: string,
         private name: string,
         private email: string,
         private password: string,
-        private role: string,
+        private role: ROLE_USER,
         private created_at: string,
     ) {}
+
+    public toDBModel():UsersDB{
+        return{
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            role: this.role,
+            created_at: this.created_at,
+        }
+    }
 
     public getId(): string {
         return this.id
@@ -40,19 +53,20 @@ export class User {
         this.password = value
     }
 
-    public getRole(): string {
+    public getRole():ROLE_USER{
         return this.role
     }
 
-    public setRole(value: string): void {
+    public setRole(value:ROLE_USER):void{
         this.role = value
     }
 
-    public getCreatedAt(): string {
+    public getCreateAt():string{
         return this.created_at
     }
 
-    public setCreatedAt(value: string): void {
+    public setCreateAt(value:string):void{
         this.created_at = value
     }
+
 }

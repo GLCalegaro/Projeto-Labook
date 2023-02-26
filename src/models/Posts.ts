@@ -3,13 +3,12 @@ import { PostModel, PostsDB } from "../interfaces/types"
 export class Post{
     constructor(
         private id: string,
-        private creator_id: string,
         private content: string,
         private likes: number,
         private dislikes: number,
         private created_at: string,
         private updated_at: string,
-        private users: {
+        private creator: {
             id: string,
             name: string
         }
@@ -18,12 +17,12 @@ export class Post{
     public toDBModel(): PostsDB {
         return {
             id: this.id,
+            creator_id: this.creator.id,
             content: this.content,
             likes: this.likes,
             dislikes: this.dislikes,
             created_at: this.created_at,
-            updated_at: this.updated_at,
-            creator_id: this.users.id,
+            updated_at: this.updated_at
         }
     }
 
@@ -35,7 +34,7 @@ export class Post{
             dislikes: this.dislikes,
             created_at: this.created_at,
             updated_at: this.updated_at,
-            users: this.users
+            creator: this.creator
         }
     }
 
@@ -71,17 +70,34 @@ export class Post{
         this.likes = value
     }
 
-    public getUsers(): {
-        id: string
-        name: string
-    } {
-        return this.users
+    public getCreatedAt():string{
+        return this.created_at
     }
 
-    public setUsers(value: {
-        id: string
-        name: string
-    }) {
-        this.users = value;
+    public setCreatedAt(value:string){
+        this.created_at = value
     }
+
+    public getUpdatedAt():string{
+        return this.updated_at
+    }
+
+    public setUpdatedAt(value:string){
+        this.updated_at = value
+    }
+
+    public getCreator():{
+        id: string,
+        name: string,
+    }{
+        return this.creator
+    }
+
+    public setCreator(value:{
+        id: string,
+        name: string,
+    }){
+        this.creator = value
+    }
+
 }

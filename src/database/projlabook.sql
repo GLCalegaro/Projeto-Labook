@@ -5,7 +5,7 @@ CREATE TABLE users (
 	email TEXT UNIQUE NOT NULL,
 	password TEXT NOT NULL,
     role TEXT NOT NULL,
-	createdAt TEXT DEFAULT(DATETIME('now', 'localtime')) NOT NULL
+	created_at TEXT DEFAULT (DATETIME()) NOT NULL
 );
 
 DROP TABLE users;
@@ -25,12 +25,13 @@ CREATE TABLE posts (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	creator_id TEXT NOT NULL,
 	content TEXT NOT NULL,
-    likes INTEGER NOT NULL, 
-	dislikes INTEGER NOT NULL,
-    created_at TEXT DEFAULT(DATETIME('now', 'localtime')) NOT NULL,
-    updated_at TEXT DEFAULT(DATETIME('now', 'localtime')) NOT NULL,
-    FOREIGN KEY (creator_id) REFERENCES users(id)
-);
+    likes INTEGER DEFAULT(0) NOT NULL, 
+    dislikes INTEGER DEFAULT(0) NOT NULL, 
+    created_at TEXT DEFAULT(DATETIME()) NOT NULL, 
+    updated_at TEXT DEFAULT(DATETIME()) NOT NULL,
+    FOREIGN KEY (creator_id) REFERENCES users (id));
+
+DROP TABLE posts;
 
 INSERT INTO posts (id, creator_id, content, likes, dislikes)
 VALUES
@@ -46,9 +47,11 @@ CREATE TABLE likes_dislikes (
 	user_id TEXT NOT NULL,
 	post_id TEXT NOT NULL,
 	like INTEGER NOT NULL,
-	FOREIGN KEY (user_id) REFERENCES users(id)
+	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (post_id) REFERENCES posts(id)
 );
+
+DROP TABLE likes_dislikes;
 
 INSERT INTO likes_dislikes(user_id, post_id, like)
 VALUES ("US04", "PO04", 2),
@@ -75,7 +78,7 @@ SELECT
  users.email,
  users.password,
  users.role,
- users.createdAt AS usersCreated,
+ users.created_at AS usersCreated,
  posts.id AS postsIds,
  posts.creator_id,
  posts.content,
